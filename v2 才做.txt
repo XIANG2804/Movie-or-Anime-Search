@@ -1,0 +1,5 @@
+v2
+Show More转跳去自己的search.html
+Nav List 的菜单增加各自功能
+Search Bar 搜索功能有点糟糕, 不能找相关的
+Weekly Broadcast Schedule的list点击没功能

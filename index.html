@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Anime Search App</title>
+</head>
+
+<body>
+    <div class="layout">
+        <header>
+            <img src="./icon/temporary-logo.jpg" width="250px" height="100px" class="logo">
+            <nav class="navigator">
+                <button class="hamburger-button"><img src="./icon/hamburger-icon.png" class="hamburger-icon"></button>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">List</a></li>
+                    <li><a href="/">Most viewed today</a></li>
+                    <li><a href="/">Recent Update</a></li>
+                    <li><a href="/">Ranking</a></li>
+                </ul>
+
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Enter the keyword">
+                    <button id="search-button">
+                        <img src="./icon/search-icon.png" width="30px" height="30px">
+                    </button>
+
+                    <div id="search-result"></div>
+                </div>
+            </nav>
+
+            <div id="anime-detail-overlay">
+                <div id="anime-detail">
+                    <button id="close-detail">X</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <article>
+                <section>
+                    <h3>Daily Picks</h3>
+                    <div id="mostViewToday" class="anime-list">
+
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Recent Update</h3>
+                    <div id="recentUpdate" class="anime-list"></div>
+                </section>
+
+            </article>
+            <aside>
+                <section>
+                    <h3>Weekly Broadcast Schedule</h3>
+                    <div id="broadcastDays" class="broadcast-days">
+                        <a href="#">Mon</a>
+                        <a href="#">Tue</a>
+                        <a href="#">Wed</a>
+                        <a href="#">Thu</a>
+                        <a href="#">Fri</a>
+                        <a href="#">Sat</a>
+                        <a href="#">Sun</a>
+                    </div>
+
+                    <div id="monday"></div>
+                    <div id="tuesday"></div>
+                    <div id="wednesday"></div>
+                    <div id="thursday"></div>
+                    <div id="friday"></div>
+                    <div id="saturday"></div>
+                    <div id="sunday"></div>
+
+                </section>
+            </aside>
+        </main>
+
+        <footer>
+            <div class="footer-border">
+                <p>Copyright © XIANG2804 2026 - Present</p>
+                <a href="https://github.com/XIANG2804">联系我</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

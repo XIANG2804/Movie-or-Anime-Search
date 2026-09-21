@@ -1,0 +1,429 @@
+/*
+全部折叠:   Ctrl + K   然后放开   再按 Ctrl + 0
+全部展开:   Ctrl + K   然后放开   再按 Ctrl + J
+*/
+:root {
+  --background-color: #fff;
+  --text-color: #000;
+  --border-box: #000;
+  --white-hover: #f2f2f2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  height: 100vh;
+  line-height: 1.5;
+}
+
+header {
+  margin: 0 0.625rem;
+}
+
+aside {
+  border: 1px solid var(--border-box);
+  margin-top: 0.3125rem;
+}
+
+.logo {
+  margin-bottom: 5rem;
+}
+
+.navigator {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-box);
+}
+
+.navigator button {
+  background-color: transparent;
+  border: none;
+  padding: 0.3125rem;
+}
+
+.navigator ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  cursor: pointer;
+}
+
+.navigator li {
+  padding: 0.625rem;
+  margin-right: 1.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.navigator a,
+.broadcast-days a {
+  color: var(--text-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hamburger-icon {
+  width: 1.875rem;
+  height: 1.875rem;
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger-button {
+  display: none;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 0.3125rem;
+}
+
+.search-bar input {
+  font-size: 1.5rem;
+  padding: 0 2.1875rem 0 0.625rem;
+}
+
+.search-bar button {
+  position: absolute;
+  right: 0.3125rem;
+  background-color: transparent;
+  border: none;
+}
+
+#search-result {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  max-width: 31.25rem;
+  overflow-y: auto;
+  background-color: var(--background-color);
+  border: none;
+  z-index: 10;
+}
+
+#search-result .result-list {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.3125rem;
+  cursor: pointer;
+}
+
+#search-result .result-list img {
+  width: 3.125rem;
+  height: 4.375rem;
+}
+
+#search-result .result-list h4 {
+  font-size: 1rem;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#anime-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: none;
+  z-index: 11; /*要高过#search-result*/
+}
+
+#anime-detail {
+  position: fixed;
+  top: 50%;
+  /*上面留空50%*/
+  left: 50%;
+  /*左边留空50%*/
+  transform: translate(-50%, -50%);
+  /*往左移动自己宽度的50%,再往上移动自己高度的50%,不然置中的是左上角*/
+  width: 90%;
+  max-height: 60vh;
+  overflow-y: auto;
+  background-color: var(--background-color);
+  padding: 2.5rem 1.25rem;
+  z-index: 100;
+}
+
+#anime-detail h2 {
+  font-size: 1.875rem;
+  padding: 0 1.25rem;
+}
+
+.detail-content {
+  display: flex;
+  gap: 1.875rem;
+}
+
+.detail-content img {
+  max-width: 100%;
+  width: 18.75rem;
+  height: auto;
+  padding: 0.625rem;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info span,
+.detail-info p {
+  font-size: 1.125rem;
+  padding: 0.625rem;
+}
+
+#close-detail {
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  width: 1.875rem;
+  height: 1.875rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.footer-border {
+  display: flex;
+  border-top: 2px solid #808080;
+}
+
+footer p,
+footer a {
+  padding: 1.25rem 0.625rem 0 0.625rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 25rem;
+  gap: 1.25rem;
+  margin: 0 0.625rem;
+  padding-bottom: 3.125rem;
+}
+
+main h3 {
+  font-size: 1.5rem;
+  padding: 0.3125rem;
+  margin-top: 1.25rem;
+}
+
+.anime-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 1.25rem 0;
+  gap: 0.9375rem;
+  border: 1px solid var(--border-box);
+}
+
+.anime-list div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.anime-list img {
+  width: 7.5rem;
+  height: 11.25rem;
+}
+
+.anime-list h4 {
+  width: 100%;
+  padding: 0 1.25rem;
+
+  white-space: nowrap;
+  /*不换行*/
+  overflow: hidden;
+  /*超出的隐藏*/
+  text-overflow: ellipsis;
+  /*显示...*/
+  text-align: center;
+}
+
+.broadcast-days {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-box);
+}
+
+.broadcast-days a {
+  padding: 0.3125rem;
+  font-size: 1rem;
+}
+
+.weekly-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.625rem;
+}
+
+.weekly-list > span:first-child {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.weekly-list > span:last-child {
+  width: 5rem;
+  padding: 0 0.625rem;
+  flex-shrink: 0;
+  /*空间不够时, 也不能压我*/
+  white-space: nowrap;
+}
+
+.navigator li:hover,
+.result-list:hover,
+.weekly-list:hover {
+  background-color: var(--white-hover);
+}
+
+#monday,
+#tuesday,
+#wednesday,
+#thursday,
+#friday,
+#saturday,
+#sunday {
+  display: none;
+  max-height: 62.5rem;
+  overflow-y: auto;
+}
+
+/*
+max-width = 最大不能超过 (Desktop First常用, 屏幕慢慢缩小)
+min-width = 最小不能低于 (Mobile First常用, 屏幕慢慢放大)
+
+另个写法
+@media (px <= width <= px) {}
+
+Tailwind CSS (Mobile First用)
+640px  → sm
+768px  → md
+1024px → lg
+1280px → xl
+1536px → 2xl
+*/
+@media (max-width: 375px) {
+  .footer-border {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 390px) {
+  #anime-detail h2 {
+    font-size: 1.5rem;
+  }
+
+  .detail-info span,
+  .detail-info p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 515px) {
+  .navigator ul {
+    display: none;
+  }
+
+  .navigator ul.show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-right: 0;
+    background-color: var(--background-color);
+    z-index: 1;
+  }
+
+  .hamburger-icon,
+  .hamburger-button {
+    display: block;
+  }
+
+  .anime-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 496px) and (max-width: 680px) {
+  .anime-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1119px) {
+  .anime-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 965px) {
+  .search-bar {
+    display: none;
+  }
+
+  .navigator ul {
+    width: 100%;
+    justify-content: space-around;
+    /* 或 center / space-between,看你想要的间距效果 */
+  }
+
+  .navigator li {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 1119px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .detail-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #anime-detail h2 {
+    text-align: center;
+  }
+
+  .detail-info span {
+    align-self: center;
+  }
+}
